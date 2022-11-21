@@ -1,0 +1,375 @@
+/*default margin and panning sizing*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/*Background color is a two color gradient
+It is also animated to go in a circle with different colors*/
+
+body {
+  background: radial-gradient(
+    circle,
+    #2558a4,
+    #0088cf,
+    #00b2c2,
+    #00d580,
+    #a8eb12
+  );
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+}
+
+/*BG animation*/
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/*Heading style*/
+
+#navHeading {
+  margin: 0 auto;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 221px;
+}
+
+.text {
+  color: white;
+}
+
+/*Error msg when fields are empty*/
+
+.errorMsg {
+  margin-bottom: 0px;
+  color: red;
+  text-align: center;
+  font-size: 13px;
+}
+
+/*when highlighting*/
+
+::selection {
+  color: #fff;
+  background: #ba27ce;
+}
+
+/*App styling*/
+
+.wrapper {
+  max-width: 420px;
+  padding: 28px 0 30px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.task-date {
+  margin-bottom: 15px;
+  height: 52px;
+  padding: 0 25px;
+  position: relative;
+}
+
+.task-input,
+.taskSubmit {
+  font-style: italic;
+  margin-bottom: 18px;
+  height: 52px;
+  padding: 0 25px;
+  position: relative;
+}
+
+/*styling of add task button*/
+
+#submitButton {
+  font-weight: 600;
+  width: 100%;
+  border: none;
+  opacity: 0.9;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 7px 13px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+  transition: transform 0.25s ease;
+  background: #e409ad;
+}
+/*Images for task input and dates. SVG's used*/
+
+.task-input img {
+  top: 50%;
+  position: absolute;
+  transform: translate(17px, -50%);
+}
+
+.task-input input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 0 20px 0 53px;
+  border: 1px solid #999;
+}
+
+.task-input input:focus,
+.task-input input.active {
+  padding-left: 52px;
+  border: 2px solid #e239bd;
+}
+
+.task-input input::placeholder {
+  color: #bfbfbf;
+}
+
+/*controls for the different tasks (all pending and completed)*/
+
+.controls,
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.controls {
+  padding: 5px 50px 10px 50px;
+  border-bottom: 1px solid #ccc;
+}
+
+.filters span {
+  margin: 0 8px;
+  font-size: 17px;
+  color: #444444;
+  cursor: pointer;
+}
+
+.filters span:first-child {
+  margin-left: 0;
+}
+
+.filters span.active {
+  color: #14b3be;
+}
+
+/*styling of the clear button*/
+
+.controls .clear-btn {
+  border: solid;
+  outline: none;
+  color: #14b3be;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+  pointer-events: none;
+  transition: transform 0.25s ease;
+  background: white;
+}
+
+.clear-btn.active {
+  opacity: 0.9;
+  pointer-events: auto;
+}
+
+.clear-btn:active {
+  transform: scale(0.93);
+}
+
+/*Where the tasks are displayed*/
+
+.task-box {
+  margin-top: 20px;
+  margin-right: 5px;
+  padding: 0 20px 10px 25px;
+}
+
+.task-box.overflow {
+  overflow-y: auto;
+  max-height: 200px;
+}
+
+/*Scroll-bar added to see the bottoms of the list*/
+
+.task-box::-webkit-scrollbar {
+  width: 5px;
+}
+
+/*scrollable*/
+
+.task-box::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 25px;
+}
+
+
+/*draggable*/
+
+.task-box::-webkit-scrollbar-thumb {
+  background: #e6e6e6;
+  border-radius: 25px;
+}
+
+.task-box .task {
+  list-style: none;
+  font-size: 17px;
+  margin-bottom: 18px;
+  align-items: flex-start;
+  border-bottom: 1px solid #ccc;
+}
+
+.task-box .task:last-child {
+  margin-bottom: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.task-box .task label {
+  display: flex;
+  align-items: flex-start;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.task label input {
+  margin-top: 7px;
+  accent-color: #14b3be;
+}
+
+.task label p {
+  user-select: none;
+  margin-left: 12px;
+  word-break: normal;
+  white-space: normal;
+}
+
+/*when task is completed and checked off*/
+
+.task label p.checked {
+  text-decoration: line-through;
+}
+
+.task-box .settings {
+  position: relative;
+  margin-left: 8px;
+}
+
+.settings :where(i, li) {
+  cursor: pointer;
+}
+
+/*three dot menu for delete and edit*/
+
+.settings .task-menu {
+  z-index: 10;
+  right: -5px;
+  bottom: -65px;
+  padding: 5px 0;
+  background: #fff;
+  position: absolute;
+  border-radius: 4px;
+  transform: scale(0);
+  transform-origin: top right;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.task-box .task:last-child .task-menu {
+  bottom: 0;
+  transform-origin: bottom right;
+}
+
+.task-box .task:first-child .task-menu {
+  bottom: -65px;
+  transform-origin: top right;
+}
+
+.task-menu.show {
+  transform: scale(1);
+}
+
+.task-menu li {
+  height: 25px;
+  font-size: 16px;
+  margin-bottom: 2px;
+  padding: 17px 15px;
+  cursor: pointer;
+  justify-content: flex-start;
+}
+
+.task-menu li:last-child {
+  margin-bottom: 0;
+}
+
+.settings li:hover {
+  background: #f5f5f5;
+}
+
+.settings li i {
+  padding-right: 8px;
+}
+
+#noTasksMsg {
+  display: block;
+  text-align: center;
+}
+
+/* Responsive query for app */
+
+@media (max-width: 424px) {
+  #appArea {
+    padding: 0 10px;
+  }
+
+  .wrapper {
+    padding: 20px 0px;
+  }
+
+  .filters span {
+    margin: 0 5px;
+  }
+
+  .task-input {
+    padding: 0 20px;
+  }
+
+  .controls {
+    padding: 18px 25px;
+  }
+
+  .task-box {
+    margin-top: 20px;
+    margin-right: 5px;
+    padding: 0 15px 10px 20px;
+  }
+
+  .task label input {
+    margin-top: 4px;
+  }
+}
